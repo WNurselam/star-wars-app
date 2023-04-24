@@ -1,30 +1,29 @@
-import React, { useEffect } from 'react'
-import { useStarshipsContext } from '@/context/StarshipsContext'
-import { Box, Input, InputGroup,InputLeftElement } from '@chakra-ui/react';
+import { Box, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { Search2Icon } from '@chakra-ui/icons'
+import { useEffect } from 'react';
+import { useStarshipsContext } from '@/context/StarshipsContext';
 
 
 const Search = () => {
-
-    const { data, searchQuery, setSearchQuery,setPage,starships,setStarhips } = useStarshipsContext();
-    //console.log(data);
+    const { setStarships, searchQuery, setSearchQuery, data } = useStarshipsContext()
 
     const handleChange = (e) => {
-        setSearchQuery(e.target.value)
-    }
-    
-    const handleSubmit = (e) => {
-        e.preventDefault();
+        setStarships([]);
+        setSearchQuery(e.target.value);
     }
 
-
+    useEffect(() => {
+        if (data && data.results) {
+            setStarships((prevStarships) => [...prevStarships, ...data.results]);
+        }
+    }, [data])
 
     return (
         <Box>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e) => e.preventDefault()}>
                 <InputGroup >
                     <InputLeftElement pointerEvents="all">
-                        <Search2Icon   />
+                        <Search2Icon />
                     </InputLeftElement >
                     <Input
                         type='search'
@@ -34,11 +33,6 @@ const Search = () => {
                     />
                 </InputGroup>
             </form>
-            {
-                data?.results?.map((item) => (
-                    <Box>{item.name}</Box>
-                ))
-            }
         </Box>
     )
 }

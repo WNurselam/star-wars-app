@@ -1,35 +1,40 @@
-import { createContext, useContext, useState } from "react";
-import { useQuery } from "react-query";
+import { createContext, useContext } from "react";
+import { useState } from "react";
 import { fetchStarships } from "@/api/fetchStarships";
+import { useQuery } from "react-query";
+
+
 
 
 export const StarshipsContext = createContext();
 export const useStarshipsContext = () => useContext(StarshipsContext);
 
-const StarshipsProvider = ({ children }) => {
+const StarshipsProvider = ({ children }) => {  
+    const [starships, setStarships] = useState([])
     const [page, setPage] = useState(1)
     const [searchQuery, setSearchQuery] = useState('');
-    const [starships,setStarships] = useState([])
+    const [showCount, setShowCount] = useState(10);
 
-    const { isLoading, isError, data } = useQuery(['starships', page, searchQuery],
+    const { isLoading, isError, data } = useQuery(['starships', page, searchQuery, showCount],
 
-        () => fetchStarships( searchQuery,page),
-        {
-            keepPreviousData: true,
-            refetchOnWindowFocus: false,
-        }
-    );
+    () => fetchStarships(searchQuery, page, showCount),
+    {
+        keepPreviousData: true,
+        staleTime: Infinity
+    }
+)
 
     const values = {
-        page,
-        setPage,
-        searchQuery,
-        setSearchQuery,
-        data,
-        isLoading,
-        isError,
-        starships,
-        setStarships
+      starships,
+      setStarships,
+      isLoading,
+      data,
+      page,
+      setPage,
+      showCount,
+      setShowCount,
+      searchQuery,
+      setSearchQuery
     }
 
     return (
