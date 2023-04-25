@@ -5,13 +5,19 @@ import StarshipCard from './StarshipCard';
 
 const CardList = () => {
 
-  const { starships, setShowCount, setPage, isLoading,searchQuery } = useStarshipsContext();
+  const { starships, setShowCount, setPage, isLoading,searchQuery,isSuccess } = useStarshipsContext();
 
   const handleLoadMore = () => {
     setShowCount((count) => count + 10);
     setPage((page) => page + 1);
   };
   //console.log(starships);
+
+  const filteredStarships = starships.filter(starship => (
+    starship.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    starship.model.toLowerCase().includes(searchQuery.toLowerCase())
+  ));
+
   if (isLoading) {
     return (
       <Flex justifyContent="center" alignItems="center" m="10" >
@@ -24,19 +30,13 @@ const CardList = () => {
       </Flex>
     );
   }
-  const filteredStarships = starships.filter(starship => (
-    starship.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    starship.model.toLowerCase().includes(searchQuery.toLowerCase())
-  ));
-
   //console.log(filteredStarships);
   return (
     <Box>
     <Flex justifyContent="space-evenly" flexWrap="wrap" mb="6" mt="5">
-    
       {
-        filteredStarships?.map((starship) => (
-          <StarshipCard starship={starship} key={starship.name} />
+        isSuccess && filteredStarships?.map((starship,index) => (
+          <StarshipCard starship={starship} key={index} />
         ))
       }   
     </Flex>

@@ -5,19 +5,13 @@ import { useStarshipsContext } from '@/context/StarshipsContext';
 
 
 const Search = () => {
-    const { setStarships, searchQuery, setSearchQuery, data } = useStarshipsContext()
+    const { setStarships, searchQuery, setSearchQuery, data, page } = useStarshipsContext()
 
     const handleChange = (e) => {
         setStarships([]);
         setSearchQuery(e.target.value);
     }
-
-    useEffect(() => {
-        if (data && data.results) {
-            setStarships((prevStarships) => [...prevStarships, ...data.results]);
-        }
-    }, [data])
-
+    
     return (
         <Box>
             <form onSubmit={(e) => e.preventDefault()}>

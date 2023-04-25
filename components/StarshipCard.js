@@ -1,7 +1,8 @@
 import { Flex, Card, Heading, Stack, Divider, Center, CardFooter } from '@chakra-ui/react';
 import React from 'react'
 import images from '../public/dataImage.json'
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { LazyLoadImage } from "react-lazy-load-image-component"
+import Link from 'next/link';
 
 
 const StarshipCard = ({ starship }) => {
@@ -16,15 +17,17 @@ const StarshipCard = ({ starship }) => {
 
                 }}
             >
-                <LazyLoadImage
-                    src={image.img}
-                    effect='blur'
-                    style={{
-                        width: "330px",
-                        height: "370px",
-                        borderRadius: "5px"
-                    }}
-                />
+                <Link href={`/${starship.name}`}>
+                    <LazyLoadImage
+                        src={image.img}
+                        effect='blur'
+                        style={{
+                            width: "330px",
+                            height: "370px",
+                            borderRadius: "5px"
+                        }}
+                    />
+                </Link>
                 <Stack>
                     <Heading size="md" >
                         {starship.name}
