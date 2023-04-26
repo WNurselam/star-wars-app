@@ -1,19 +1,18 @@
-import { Box, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
+import { Box, Input, InputGroup, InputLeftElement, Flex } from '@chakra-ui/react';
 import { Search2Icon } from '@chakra-ui/icons'
-import { useEffect } from 'react';
 import { useStarshipsContext } from '@/context/StarshipsContext';
 
 
 const Search = () => {
-    const { setStarships, searchQuery, setSearchQuery, data, page } = useStarshipsContext()
+    const { setStarships, searchQuery, setSearchQuery } = useStarshipsContext()
 
     const handleChange = (e) => {
         setStarships([]);
         setSearchQuery(e.target.value);
     }
-    
+
     return (
-        <Box>
+        <Flex direction="column">
             <form onSubmit={(e) => e.preventDefault()}>
                 <InputGroup >
                     <InputLeftElement pointerEvents="all">
@@ -27,7 +26,7 @@ const Search = () => {
                     />
                 </InputGroup>
             </form>
-        </Box>
+        </Flex>
     )
 }
 

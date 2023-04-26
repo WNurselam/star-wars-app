@@ -2,8 +2,7 @@ import { createContext, useContext } from "react";
 import { useState } from "react";
 import { fetchStarships } from "@/api/fetchStarships";
 import { useQuery } from "react-query";
-
-
+import { useEffect } from "react";
 
 
 export const StarshipsContext = createContext();
@@ -14,8 +13,10 @@ const StarshipsProvider = ({ children }) => {
     const [page, setPage] = useState(1)
     const [searchQuery, setSearchQuery] = useState('');
     const [showCount, setShowCount] = useState(10);
+    const [favorite, setFavorite] = useState([])
 
-    const { isLoading, isError, data,isSuccess } = useQuery(['starships', page, searchQuery, showCount],
+
+    const { isLoading, isError, data, isSuccess } = useQuery(['starships', page, searchQuery, showCount],
 
         () => fetchStarships(searchQuery, page, showCount),
         {
@@ -32,8 +33,25 @@ const StarshipsProvider = ({ children }) => {
             }
         }
     )
-
     //console.log(starships)
+
+
+    function handleAddFavorite(starship) {
+        const newFavorites = [...favorite, starship];
+        setFavorite(newFavorites);
+        localStorage.setItem('favorites', JSON.stringify(newFavorites));
+    }
+
+    useEffect(() => {
+        const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
+        if (storedFavorites) {
+            setFavorite(storedFavorites);
+        }
+    }, []);
+
+
+    //console.log(favorite); 
+
 
     const values = {
         starships,
@@ -46,7 +64,10 @@ const StarshipsProvider = ({ children }) => {
         setShowCount,
         searchQuery,
         setSearchQuery,
-        isSuccess
+        isSuccess,
+        handleAddFavorite,
+        favorite,
+        setFavorite
     }
 
     return (

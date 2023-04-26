@@ -1,13 +1,12 @@
 import React from 'react'
-import { Box,Button } from '@chakra-ui/react';
+import { Box} from '@chakra-ui/react';
 
 
 const StarshipDetail = ({starship}) => {
   return (
-    <Box>
-      
-   
+    <Box>  
       {starship.name}
+    
     
     </Box>
   )

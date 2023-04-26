@@ -1,11 +1,11 @@
 import React from 'react'
-import { Flex, Button,Box,Spinner } from '@chakra-ui/react';
+import { Flex, Button, Box, Spinner } from '@chakra-ui/react';
 import { useStarshipsContext } from '@/context/StarshipsContext';
 import StarshipCard from './StarshipCard';
 
 const CardList = () => {
 
-  const { starships, setShowCount, setPage, isLoading,searchQuery,isSuccess } = useStarshipsContext();
+  const { starships, setShowCount, setPage, isLoading, searchQuery, isSuccess } = useStarshipsContext();
 
   const handleLoadMore = () => {
     setShowCount((count) => count + 10);
@@ -14,7 +14,7 @@ const CardList = () => {
   //console.log(starships);
 
   const filteredStarships = starships.filter(starship => (
-    starship.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    starship.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     starship.model.toLowerCase().includes(searchQuery.toLowerCase())
   ));
 
@@ -33,14 +33,14 @@ const CardList = () => {
   //console.log(filteredStarships);
   return (
     <Box>
-    <Flex justifyContent="space-evenly" flexWrap="wrap" mb="6" mt="5">
-      {
-        isSuccess && filteredStarships?.map((starship,index) => (
-          <StarshipCard starship={starship} key={index} />
-        ))
-      }   
-    </Flex>
-    <Button onClick={handleLoadMore} disabled={isLoading}>
+      <Flex gap='20' justifyContent='center'  flexWrap="wrap" mb="6" mt="5">
+        {
+          isSuccess && filteredStarships?.map((starship, index) => (
+            <StarshipCard starship={starship} key={index} />
+          ))
+        }
+      </Flex>
+      <Button onClick={handleLoadMore} disabled={isLoading}>
         {isLoading ? "Loading..." : "Load More"}
       </Button>
     </Box>

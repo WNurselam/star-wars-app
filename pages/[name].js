@@ -15,7 +15,7 @@ const StarshipDetails =({ starship }) =>{
     const { query } = context
     const { name } = query
 
-    const res = await axios.get(`https://swapi.dev/api/starships/?name=${name}`)
+    const res = await axios.get(`https://swapi.dev/api/starships/?search=${name}`)
     const starship = res.data.results[0]
   
   
