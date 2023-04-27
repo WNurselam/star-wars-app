@@ -1,4 +1,4 @@
-import { Box, Input, InputGroup, InputLeftElement, Flex } from '@chakra-ui/react';
+import { Input, InputGroup, InputLeftElement, Flex, Stack } from '@chakra-ui/react';
 import { Search2Icon } from '@chakra-ui/icons'
 import { useStarshipsContext } from '@/context/StarshipsContext';
 
@@ -12,20 +12,24 @@ const Search = () => {
     }
 
     return (
-        <Flex direction="column">
-            <form onSubmit={(e) => e.preventDefault()}>
-                <InputGroup >
-                    <InputLeftElement pointerEvents="all">
-                        <Search2Icon />
-                    </InputLeftElement >
-                    <Input
-                        type='search'
-                        placeholder='Search Starships'
-                        value={searchQuery}
-                        onChange={handleChange}
-                    />
-                </InputGroup>
-            </form>
+        <Flex justifyContent="center"  >
+            <Stack >
+                <form onSubmit={(e) => e.preventDefault()}>
+                    <InputGroup >
+                        <InputLeftElement pointerEvents="all">
+                            <Search2Icon />
+                        </InputLeftElement >
+                        <Input
+                            type='search'
+                            placeholder='Search Starships'
+                            value={searchQuery}
+                            onChange={handleChange}
+                            pr='5.5rem'
+
+                        />
+                    </InputGroup>
+                </form>
+            </Stack>
         </Flex>
     )
 }

@@ -5,7 +5,7 @@ import StarshipCard from './StarshipCard';
 
 const CardList = () => {
 
-  const { starships, setShowCount, setPage, isLoading, searchQuery, isSuccess } = useStarshipsContext();
+  const { starships, setShowCount, setPage, isLoading, searchQuery, isSuccess, isFetching } = useStarshipsContext();
 
   const handleLoadMore = () => {
     setShowCount((count) => count + 10);
@@ -33,15 +33,20 @@ const CardList = () => {
   //console.log(filteredStarships);
   return (
     <Box>
-      <Flex gap='20' justifyContent='center'  flexWrap="wrap" mb="6" mt="5">
+      <Flex gap='20' justifyContent='center' flexWrap="wrap" mb="6" mt="5">
         {
           isSuccess && filteredStarships?.map((starship, index) => (
             <StarshipCard starship={starship} key={index} />
           ))
         }
       </Flex>
-      <Button onClick={handleLoadMore} disabled={isLoading}>
-        {isLoading ? "Loading..." : "Load More"}
+      <Button onClick={handleLoadMore} disabled={isLoading || isFetching}>
+        {isLoading || isFetching ?
+          <Spinner size='lg'
+            thickness='4px'
+            speed='0.75s'
+            emptyColor='orange.300'
+            color='yellow.500' /> : "Load More"}
       </Button>
     </Box>
   )

@@ -1,15 +1,33 @@
-import { Flex, Card, Heading, Stack,Image, Center, CardFooter, Button } from '@chakra-ui/react';
+import { Flex, Card, Heading, Stack, Image, Center, CardFooter, Button, ButtonGroup } from '@chakra-ui/react';
 import images from '../public/dataImage.json'
 import Link from 'next/link';
 import { useStarshipsContext } from '@/context/StarshipsContext';
 import { motion } from "framer-motion";
-
+import StarshipModal from './StarshipModal';
+import { StarIcon } from '@chakra-ui/icons'
+import { useState, useEffect } from 'react';
 
 const StarshipCard = ({ starship }) => {
 
     const image = images.find((image) => image.name === starship.name);
-    const { handleAddFavorite } = useStarshipsContext()
+    const { handleAddFavorite, favorite, removeFavorite } = useStarshipsContext()
 
+    const [isFavorite, setIsFavorite] = useState(false);
+    useEffect(() => {
+        const handleIsFavorite = () => {
+            setIsFavorite(favorite.some((item) => item.name === starship.name));
+        };
+
+        handleIsFavorite();
+    }, [favorite, starship]);
+
+    const handleToggleFavorite = () => {
+        if (isFavorite) {
+            removeFavorite(starship);
+        } else {
+            handleAddFavorite(starship);
+        }
+    };
 
     return (
         <Flex
@@ -19,26 +37,21 @@ const StarshipCard = ({ starship }) => {
             bg='#05061d'
             transition='0.5s linear'
         >
-            <Card  bg='transparent' borderRadius="5"
+            <Card bg='transparent' borderRadius="5"
                 _hover={{
-                     boxShadow: "10px 10px 47px 0px rgba(29, 209, 161,0.2)",
+                    boxShadow: "10px 10px 47px 0px rgba(29, 209, 161,0.2)",
                     transition: "400ms"
-
                 }}
-            >
-                <Link  href={`/${starship.name}`}>
+                width="300px"
+            >   
                     <Image
                         src={image.img}
                         style={{
-                            width: "350px",
-                            height: "370px",
+                            width: "300px",
+                            height: "300px",
                             borderRadius: "5px",
-                            
                         }}
-                        
                     />
-                </Link>
-
                 <Stack>
                     <Heading size="md" pt='4' color='#ffc404' >
                         {starship.name}
@@ -46,9 +59,10 @@ const StarshipCard = ({ starship }) => {
                 </Stack>
                 <Center>
                     <CardFooter>
-                        <Button as={motion.div}
-                            whileHover={{ color: 'white' }}
-                            color='#ffc404' onClick={() => handleAddFavorite(starship)}>Add Favorite</Button>
+                        <ButtonGroup>
+                            <StarIcon color={isFavorite ? 'orange.600' : 'white'} w={8} h={8} onClick={handleToggleFavorite} />
+                            <StarshipModal starship={starship} />
+                        </ButtonGroup>
                     </CardFooter>
                 </Center>
             </Card>

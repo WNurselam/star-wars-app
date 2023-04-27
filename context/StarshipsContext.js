@@ -16,7 +16,7 @@ const StarshipsProvider = ({ children }) => {
     const [favorite, setFavorite] = useState([])
 
 
-    const { isLoading, isError, data, isSuccess } = useQuery(['starships', page, searchQuery, showCount],
+    const { isLoading, isError, data, isSuccess, isFetching } = useQuery(['starships', page, searchQuery, showCount],
 
         () => fetchStarships(searchQuery, page, showCount),
         {
@@ -38,6 +38,11 @@ const StarshipsProvider = ({ children }) => {
 
     function handleAddFavorite(starship) {
         const newFavorites = [...favorite, starship];
+        setFavorite(newFavorites);
+        localStorage.setItem('favorites', JSON.stringify(newFavorites));
+    }
+    const removeFavorite = (starship) => {
+        const newFavorites = favorite.filter((item) => item.name !== starship.name);
         setFavorite(newFavorites);
         localStorage.setItem('favorites', JSON.stringify(newFavorites));
     }
@@ -67,7 +72,9 @@ const StarshipsProvider = ({ children }) => {
         isSuccess,
         handleAddFavorite,
         favorite,
-        setFavorite
+        setFavorite,
+        removeFavorite,
+        isFetching
     }
 
     return (
