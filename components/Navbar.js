@@ -54,7 +54,7 @@ const Navbar = () => {
                                HOME
                             </Button>
                         </NextLink>
-                        <NextLink href="/favorites" passHref>
+                        <NextLink  href="/favorites" passHref>
                             <Button
                                 as={Link}
                                 variant="ghost"

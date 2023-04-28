@@ -26,7 +26,7 @@ const StarshipModal = ({ starship }) => {
 
   return (
     <Box>
-      <Button variant='solid' onClick={onOpen}>Character About</Button>
+      <Button fontSize="15" variant='solid' onClick={onOpen}>Character About</Button>
       <Modal isCentered size="md" variant="purple" backGround='blue' overlayClassName="custom-modal-overlay" isOpen={isOpen} onClose={onClose} >
         <ModalOverlay />
         <Button onClick={onOpen}>Open</Button>
@@ -41,11 +41,11 @@ const StarshipModal = ({ starship }) => {
             </Stack>
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
+            <Button  mr={3} onClick={onClose}>
               Close
             </Button>
             <Link href={`/${starship.name}`}>
-              <Button variant='solid' colorScheme='blue'>
+              <Button variant='solid' >
                 Show More
               </Button>
             </Link>

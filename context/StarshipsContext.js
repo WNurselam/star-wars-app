@@ -30,10 +30,12 @@ const StarshipsProvider = ({ children }) => {
                         setStarships((prevStarships) => [...prevStarships, ...data.results]);
                     }
                 }
-            }
+            }  
         }
     )
     //console.log(starships)
+
+
 
 
     function handleAddFavorite(starship) {
@@ -46,15 +48,6 @@ const StarshipsProvider = ({ children }) => {
         setFavorite(newFavorites);
         localStorage.setItem('favorites', JSON.stringify(newFavorites));
     }
-
-    useEffect(() => {
-        const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
-        if (storedFavorites) {
-            setFavorite(storedFavorites);
-        }
-    }, []);
-
-
     //console.log(favorite); 
 
 

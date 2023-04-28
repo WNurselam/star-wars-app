@@ -1,6 +1,5 @@
 import { Flex, Card, Heading, Stack, Image, Center, CardFooter, Button, ButtonGroup } from '@chakra-ui/react';
 import images from '../public/dataImage.json'
-import Link from 'next/link';
 import { useStarshipsContext } from '@/context/StarshipsContext';
 import { motion } from "framer-motion";
 import StarshipModal from './StarshipModal';
@@ -29,6 +28,7 @@ const StarshipCard = ({ starship }) => {
         }
     };
 
+
     return (
         <Flex
             as={motion.div}
@@ -36,6 +36,7 @@ const StarshipCard = ({ starship }) => {
             whileTap={{ scale: 0.9 }}
             bg='#05061d'
             transition='0.5s linear'
+            position="relative"
         >
             <Card bg='transparent' borderRadius="5"
                 _hover={{
@@ -43,24 +44,24 @@ const StarshipCard = ({ starship }) => {
                     transition: "400ms"
                 }}
                 width="300px"
-            >   
-                    <Image
-                        src={image.img}
-                        style={{
-                            width: "300px",
-                            height: "300px",
-                            borderRadius: "5px",
-                        }}
-                    />
+            >
+                <Image
+                    src={image.img}
+                    style={{
+                        width: "300px",
+                        height: "300px",
+                        borderRadius: "5px",
+                    }}
+                />
                 <Stack>
-                    <Heading size="md" pt='4' color='#ffc404' >
+                    <Heading size="md" pt='4' color='orange.400' >
                         {starship.name}
                     </Heading>
                 </Stack>
                 <Center>
                     <CardFooter>
                         <ButtonGroup>
-                            <StarIcon color={isFavorite ? 'orange.600' : 'white'} w={8} h={8} onClick={handleToggleFavorite} />
+                            <StarIcon cursor="pointer" top="2" right="2" position="absolute" p="2" background={isFavorite ? 'white' : 'blackAlpha.200'} color={isFavorite ? 'orange.400' : 'white'} w={8} h={8} onClick={handleToggleFavorite} />
                             <StarshipModal starship={starship} />
                         </ButtonGroup>
                     </CardFooter>
@@ -71,3 +72,4 @@ const StarshipCard = ({ starship }) => {
 }
 
 export default StarshipCard;
+
