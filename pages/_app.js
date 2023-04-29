@@ -6,7 +6,6 @@ import Layout from '@/layout/Layout'
 
 
 
-
 export default function App({ Component, pageProps }) {
   const theme = extendTheme({
     fonts: {

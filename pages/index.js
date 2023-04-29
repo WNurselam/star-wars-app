@@ -3,12 +3,14 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import { Box } from '@chakra-ui/react'
 
+
 import Search from '@/components/Search'
 import CardList from '@/components/CardList'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+
   return (
     <>
       <Head>

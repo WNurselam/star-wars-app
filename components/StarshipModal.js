@@ -12,12 +12,11 @@ import {
 } from '@chakra-ui/react'
 
 
-
 const StarshipModal = ({ starship }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const OverlayOne = () => (
     <ModalOverlay
-      
+
       backdropFilter='blur(10px) hue-rotate(90deg)'
     />
   )
@@ -26,26 +25,34 @@ const StarshipModal = ({ starship }) => {
 
   return (
     <Box>
-      <Button fontSize="15" variant='solid' onClick={onOpen}>Character About</Button>
+      <Button fontSize="15" hover={{
+        backgroundColor: "whiteAlpha.300"
+      }} backgroundColor="whiteAlpha.200" variant='solid' onClick={onOpen}>Character About</Button>
       <Modal isCentered size="md" variant="purple" backGround='blue' overlayClassName="custom-modal-overlay" isOpen={isOpen} onClose={onClose} >
         <ModalOverlay />
-        <Button onClick={onOpen}>Open</Button>
+        <Button _hover={{
+          backgroundColor: "whiteAlpha.300"
+        }} onClick={onOpen}>Open</Button>
         {overlay}
-        <ModalContent bg={bg}>
-          <ModalHeader color="whatsapp.600">{starship.name}</ModalHeader>
+        <ModalContent bg={bg} >
+          <ModalHeader fontWeight="bold" color="whatsapp.600">{starship.name}</ModalHeader>
           <ModalCloseButton color="white" />
           <ModalBody color="white">
             <Stack textAlign="justify" >
-            <Text><Text as="span" color="orange.200">Model: </Text>{starship.model}</Text>
-            <Text><Text as="span" color="orange.200">hyperdrive rating: </Text>{starship.hyperdrive_rating}</Text>
+              <Text><Text as="span" color="orange.200">Model: </Text>{starship.model}</Text>
+              <Text><Text as="span" color="orange.200">Hyperdrive rating: </Text>{starship.hyperdrive_rating}</Text>
             </Stack>
           </ModalBody>
           <ModalFooter>
-            <Button  mr={3} onClick={onClose}>
+            <Button hover={{
+              backgroundColor: "whiteAlpha.300"
+            }} backgroundColor="whiteAlpha.200" mr={3} onClick={onClose}>
               Close
             </Button>
             <Link href={`/${starship.name}`}>
-              <Button variant='solid' >
+              <Button _hover={{
+                backgroundColor: "whiteAlpha.300"
+              }} variant='solid' backgroundColor="whiteAlpha.200" >
                 Show More
               </Button>
             </Link>
