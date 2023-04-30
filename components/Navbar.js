@@ -37,9 +37,10 @@ const Navbar = () => {
                 aria-label="Open Menu"
                 size="lg"
                 backgroundColor="whiteAlpha.200"
-                icon={<HamburgerIcon  _hover={{
+                icon={<HamburgerIcon color="whiteAlpha.800"  _hover={{
                     backgroundColor: "whiteAlpha.300"
-                }} backgroundColor="whiteAlpha.200" />}
+                }} backgroundColor="whiteAlpha.200" />
+            }
                 onClick={onOpen}
                 display={['flex', 'flex', 'none', 'none']}
             />

@@ -1,35 +1,65 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Star Wars - Starships App
 
-## Getting Started
+Starships application using star wars api and view information about the starships
 
-First, run the development server:
+## See Live  [Here](https://star-wars-app-two.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+## Application Features
+
+ ✔️ List starships by using Star Wars API
+
+✔️ Starship items should include name, model and hyperdrive_rating.
+
+✔️ Users can search starships by its name or model through the API, using a single input above.
+
+✔️ Users can click on any item and go to a detail page that includes passengers, max_atmosphering_speed, manufacturer, crew and cargo_capacity in addition to name and model.
+
+✔️ Users can go back to home page from detail page
+
+## Technologies
+
+- Next.js 
+- Context Api 
+- React Query
+- Chakra UI + Framer Motion
+- Axios
+
+## Screenshots
+
+![Uygulama Ekran Görüntüsü-1](/public/sw-1.png)
+
+![Uygulama Ekran Görüntüsü-2](/public/sw-2.png)
+
+![Uygulama Ekran Görüntüsü-2](/public/sw-3.png)
+
+![Uygulama Ekran Görüntüsü-2](/public/sw-4.png)
+
+## Api
+
+[Go to api redirect](https://swapi.dev/)
+
+## Install the dependencies
+
+```bash 
+  npm install 
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Run Next dev server
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```bash 
+   npm run dev
+   # or
+   yarn dev
+   # or
+   pnpm dev
+```
+Open http://localhost:3000 with your browser to see the result.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## To build for production
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash 
+  npm run build
+```
 
 ## Deploy on Vercel
 
