@@ -14,12 +14,15 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 
 const Navbar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const [active,setActive] = useState(true)
 
     const bg = "linear-gradient(127.09deg, rgba(6, 11, 40, 0.94) 19.41%, rgba(10, 14, 35, 0.49) 76.65%)"
 
+    const router = useRouter();
 
     return (
         <Flex justifyContent="space-between" alignItems="center">
@@ -33,7 +36,8 @@ const Navbar = () => {
             <IconButton
                 aria-label="Open Menu"
                 size="lg"
-                icon={<HamburgerIcon color="whiteAlpha.800" _hover={{
+                backgroundColor="whiteAlpha.200"
+                icon={<HamburgerIcon  _hover={{
                     backgroundColor: "whiteAlpha.300"
                 }} backgroundColor="whiteAlpha.200" />}
                 onClick={onOpen}
@@ -42,7 +46,7 @@ const Navbar = () => {
             <Drawer placement="right" onClose={onClose} isOpen={isOpen}>
                 <DrawerOverlay />
                 <DrawerContent bg={bg} >
-                    <DrawerCloseButton />
+                    <DrawerCloseButton color="whiteAlpha.800" />
                     <VStack alignItems="flex-start" pt="20">
                         <NextLink href="/" passHref>
                             <Button
@@ -55,6 +59,7 @@ const Navbar = () => {
                                 _hover={{
                                     backgroundColor: "whiteAlpha.300"
                                 }}
+                                
                             >
                                 HOME
                             </Button>
@@ -84,16 +89,16 @@ const Navbar = () => {
                 justifyContent="flex-end"
             >
                 <NextLink href="/" passHref>
-                    <Button _hover={{
+                    <Button variant={router.pathname === '/' ? 'solid' : 'ghost'} colorScheme="whiteAlpha"   _hover={{
                         backgroundColor: "whiteAlpha.300"
-                    }} color="whiteAlpha.800" variant="ghost" aria-label="Home" mx={2}>
+                    }} color="whiteAlpha.800" aria-label="Home" mx={2}>
                         HOME
                     </Button>
                 </NextLink>
                 <NextLink href="/favorites" passHref>
-                    <Button _hover={{
+                    <Button variant={router.pathname === '/favorites' ? 'solid' : 'ghost'} colorScheme="whiteAlpha"  _hover={{
                         backgroundColor: "whiteAlpha.300"
-                    }} color="whiteAlpha.800" variant="ghost" aria-label="Favorites" mx={2}>
+                    }} color="whiteAlpha.800"  aria-label="Favorites" mx={2}>
                         FAVORİTES
                     </Button>
                 </NextLink>

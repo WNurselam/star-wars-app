@@ -53,7 +53,7 @@ const StarshipModal = ({ starship }) => {
             <Link href={`/${starship.name}`}>
               <Button _hover={{
                 backgroundColor: "whiteAlpha.300"
-              }} backgroundColor="whiteAlpha.200" variant='solid'>
+              }} backgroundColor="whiteAlpha.200" color="whiteAlpha.800" variant='solid'>
                 Show More
               </Button>
             </Link>

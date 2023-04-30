@@ -21,7 +21,7 @@ const Search = () => {
                 <InputGroup as={motion.div} whileHover={{ scale: 1.2 }}
                     transition='0.5s linear' >
                     <InputLeftElement pointerEvents="all">
-                        <Search2Icon />
+                        <Search2Icon color="whiteAlpha.800"/>
                     </InputLeftElement >
                     <Input
                         placeholder='Search Name / Model '
@@ -30,7 +30,7 @@ const Search = () => {
                         pr='5.5rem'
                         border="1px"
                         borderColor="whiteAlpha.400"
-                        color="orange.500"
+                        color="yellow.500"
                     />
                 </InputGroup>
             </Stack>
