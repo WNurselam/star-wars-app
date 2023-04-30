@@ -29,7 +29,9 @@ const Favorites = () => {
                     <Box display="flex" mb="2" borderRadius="md" p="2" justifyContent="center" alignItems="center" width="100px" background={bg} >
                         <Link href="/"> <ArrowBackIcon boxSize={8} color='yellow.400' /></Link>
                     </Box>
-                    <IconButton bg={bg} onClick={removeAll} aria-label='Search database' icon={<CloseIcon color='yellow.400' />} />
+                    <IconButton _hover={{
+                        backgroundColor: "red"
+                    }} bg={bg} onClick={removeAll} aria-label='Search database' icon={<CloseIcon color='yellow.400' />} />
                 </Flex>
                 <Flex gap='20' justifyContent='center' flexWrap="wrap" mb="6" mt="5">
                     {
@@ -62,7 +64,9 @@ const Favorites = () => {
                                         </Stack>
                                         <Center>
                                             <CardFooter>
-                                                <Button fontSize="15" variant='solid'
+                                                <Button fontSize="15" variant='solid' _hover={{
+                                                    backgroundColor: "whiteAlpha.300"
+                                                }} backgroundColor="whiteAlpha.200" color="whiteAlpha.800"
                                                     onClick={() => removeFavorite(starship)}>Remove Favorite</Button>
                                             </CardFooter>
                                         </Center>

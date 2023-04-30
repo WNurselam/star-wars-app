@@ -51,6 +51,7 @@ const StarshipDetail = ({ starship }) => {
             bg='#05061d'
             p={30}
             borderRadius="md"
+            borderColor="whiteAlpha.200"
           >
             <Image
               objectFit='cover'

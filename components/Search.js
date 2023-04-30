@@ -1,31 +1,19 @@
 import { Input, InputGroup, InputLeftElement, Flex, Stack } from '@chakra-ui/react';
 import { Search2Icon } from '@chakra-ui/icons'
 import { useStarshipsContext } from '@/context/StarshipsContext';
-import { useEffect } from 'react';
 import { motion } from "framer-motion";
 
 
 const Search = () => {
-    const { setStarships, setShowCount, setPage, data, searchQuery, setSearchQuery } = useStarshipsContext()
+    const { setStarships,setPage, searchQuery, setSearchQuery } = useStarshipsContext()
 
+    //console.log(searchQuery);
     const handleChange = (e) => {
         const value = e.target.value;
-        setSearchQuery(value);
-        if (value === '') {
-            setStarships(data.results);
-        }
-        if (searchQuery !== '' && !data?.results) {
-            setStarships([])
-            setPage(1)
-            setShowCount(10)
-        }
+        setSearchQuery(value); 
+        setPage(1)
+        setStarships([]) 
     }
-    useEffect(() => {
-        if (!searchQuery) {
-            setPage(1);
-        }
-    }, [searchQuery]);
-    
 
     return (
         <Flex justifyContent="center" >
@@ -36,11 +24,13 @@ const Search = () => {
                         <Search2Icon />
                     </InputLeftElement >
                     <Input
-                        type='search'
                         placeholder='Search Name / Model '
                         value={searchQuery}
                         onChange={handleChange}
                         pr='5.5rem'
+                        border="1px"
+                        borderColor="whiteAlpha.400"
+                        color="orange.500"
                     />
                 </InputGroup>
             </Stack>

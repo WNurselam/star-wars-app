@@ -2,7 +2,6 @@ import { createContext, useContext } from "react";
 import { useState } from "react";
 import { fetchStarships } from "@/api/fetchStarships";
 import { useQuery } from "react-query";
-import { useEffect } from "react";
 
 export const StarshipsContext = createContext();
 export const useStarshipsContext = () => useContext(StarshipsContext);
@@ -13,15 +12,14 @@ const StarshipsProvider = ({ children }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [showCount, setShowCount] = useState(10);
     const [favorite, setFavorite] = useState([])
-    const [filteredStarships, setFilteredStarships] = useState([])
 
 
-    const { isLoading, isError, data, isSuccess, isFetching } = useQuery(['starships', page, searchQuery, showCount],
+    const { isLoading,data, isSuccess, isFetching } = useQuery(['starships', page, searchQuery, showCount],
 
         () => fetchStarships(searchQuery, page, showCount),
-        {
+        {  
+         
             keepPreviousData: true,
-            staleTime: Infinity,
             onSuccess: (data) => {
                 if (data && data.results) {
                     if (page === 1) {
@@ -34,6 +32,7 @@ const StarshipsProvider = ({ children }) => {
         }
     )
     //console.log(starships)
+    //console.log(page,searchQuery);
 
 
     function handleAddFavorite(starship) {
@@ -67,8 +66,6 @@ const StarshipsProvider = ({ children }) => {
         setFavorite,
         removeFavorite,
         isFetching,
-        filteredStarships,
-        setFilteredStarships,
     }
 
     return (

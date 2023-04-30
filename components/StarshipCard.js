@@ -1,10 +1,10 @@
-import { Flex, Card, Heading, Stack, Image, Center, CardFooter, Button, ButtonGroup, Box } from '@chakra-ui/react';
+import { Flex, Card, Heading, Stack, Image, Center, CardFooter, ButtonGroup } from '@chakra-ui/react';
 import images from '../public/dataImage.json'
 import { useStarshipsContext } from '@/context/StarshipsContext';
 import { motion } from "framer-motion";
-import StarshipModal from './StarshipModal';
 import { StarIcon } from '@chakra-ui/icons'
 import { useState, useEffect } from 'react';
+import StarshipModal from './StarshipModal';
 
 const StarshipCard = ({ starship }) => {
 
@@ -12,6 +12,7 @@ const StarshipCard = ({ starship }) => {
     const { handleAddFavorite, favorite, removeFavorite } = useStarshipsContext()
 
     const [isFavorite, setIsFavorite] = useState(false);
+
     useEffect(() => {
         const handleIsFavorite = () => {
             setIsFavorite(favorite.some((item) => item.name === starship.name));
@@ -36,7 +37,7 @@ const StarshipCard = ({ starship }) => {
             transition='0.5s linear'
             position="relative"
         >
-            <Card bg='transparent' borderRadius="5" 
+            <Card bg='transparent' borderRadius="5"
                 _hover={{
                     boxShadow: "10px 10px 47px 0px rgba(29, 209, 161,0.2)",
                     transition: "400ms"
@@ -50,7 +51,7 @@ const StarshipCard = ({ starship }) => {
                         height: "300px",
                         borderRadius: "5px",
                     }}
-                />       
+                />
                 <Stack>
                     <Heading display="grid" placeItems="center" minH="76px" size="md" pt='4' color='orange.400' >
                         {starship.name}
@@ -63,7 +64,7 @@ const StarshipCard = ({ starship }) => {
                             <StarshipModal starship={starship} />
                         </ButtonGroup>
                     </CardFooter>
-                </Center>   
+                </Center>
             </Card>
         </Flex>
     )

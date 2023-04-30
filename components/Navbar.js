@@ -17,13 +17,12 @@ import NextLink from 'next/link';
 
 const Navbar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [display, changeDisplay] = useState('none');
 
     const bg = "linear-gradient(127.09deg, rgba(6, 11, 40, 0.94) 19.41%, rgba(10, 14, 35, 0.49) 76.65%)"
-   
+
 
     return (
-        <Flex justifyContent="space-between" alignItems="center">      
+        <Flex justifyContent="space-between" alignItems="center">
             <NextLink href="/" passHref>
                 <Image
                     src="/logo.png"
@@ -34,7 +33,9 @@ const Navbar = () => {
             <IconButton
                 aria-label="Open Menu"
                 size="lg"
-                icon={<HamburgerIcon />}
+                icon={<HamburgerIcon color="whiteAlpha.800" _hover={{
+                    backgroundColor: "whiteAlpha.300"
+                }} backgroundColor="whiteAlpha.200" />}
                 onClick={onOpen}
                 display={['flex', 'flex', 'none', 'none']}
             />
@@ -43,7 +44,7 @@ const Navbar = () => {
                 <DrawerContent bg={bg} >
                     <DrawerCloseButton />
                     <VStack alignItems="flex-start" pt="20">
-                        <NextLink  href="/" passHref>
+                        <NextLink href="/" passHref>
                             <Button
                                 as={Link}
                                 variant="ghost"
@@ -51,11 +52,14 @@ const Navbar = () => {
                                 onClick={onClose}
                                 w="100%"
                                 color="whiteAlpha.800"
+                                _hover={{
+                                    backgroundColor: "whiteAlpha.300"
+                                }}
                             >
-                               HOME
+                                HOME
                             </Button>
                         </NextLink>
-                        <NextLink   href="/favorites" passHref>
+                        <NextLink href="/favorites" passHref>
                             <Button
                                 as={Link}
                                 variant="ghost"
@@ -63,10 +67,12 @@ const Navbar = () => {
                                 onClick={onClose}
                                 w="100%"
                                 color="whiteAlpha.800"
-                               
-                                
+                                _hover={{
+                                    backgroundColor: "whiteAlpha.300"
+                                }}
+
                             >
-                              FAVORİTES
+                                FAVORİTES
                             </Button>
                         </NextLink>
                     </VStack>
@@ -78,13 +84,17 @@ const Navbar = () => {
                 justifyContent="flex-end"
             >
                 <NextLink href="/" passHref>
-                    <Button  color="whiteAlpha.800" variant="ghost" aria-label="Home" mx={2}>
-                        Home
+                    <Button _hover={{
+                        backgroundColor: "whiteAlpha.300"
+                    }} color="whiteAlpha.800" variant="ghost" aria-label="Home" mx={2}>
+                        HOME
                     </Button>
                 </NextLink>
                 <NextLink href="/favorites" passHref>
-                    <Button color="whiteAlpha.800" variant="ghost" aria-label="Favorites" mx={2}>
-                        Favorites
+                    <Button _hover={{
+                        backgroundColor: "whiteAlpha.300"
+                    }} color="whiteAlpha.800" variant="ghost" aria-label="Favorites" mx={2}>
+                        FAVORİTES
                     </Button>
                 </NextLink>
             </Flex>

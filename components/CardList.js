@@ -5,8 +5,8 @@ import StarshipCard from './StarshipCard';
 
 
 const CardList = () => {
-
-  const { starships, setStarships, setShowCount, setPage, isLoading, searchQuery, isSuccess, isFetching } = useStarshipsContext();
+  
+const { starships,setShowCount, setPage, isLoading, searchQuery, isSuccess, isFetching } = useStarshipsContext();
 
   const handleLoadMore = () => {
     setShowCount((count) => count + 10);
@@ -28,41 +28,43 @@ const CardList = () => {
           speed='0.50s'
           emptyColor='white'
           color='yellow.500' />
-        <Box p="3">Starships is loading...</Box>
+        <Box p="3" color="whiteAlpha.300" >Starships is loading...</Box>
       </Flex>
     );
   }
-  console.log(filteredStarships);
+  //console.log(filteredStarships);
   return (
-  
-      <Box mt="12">
-        {filteredStarships.length === 0 ? (
-          <Box mt="20" color="white">Nothing Starships !</Box>
-        ) : (
-          
-          <Flex gap='20' justifyContent='center' flexWrap="wrap" mb="6" mt="5">
-            {isSuccess && filteredStarships.map((starship, index) => (
-              <StarshipCard starship={starship} key={index} />
-            ))}
-          </Flex>
 
-        )}
-        {filteredStarships.length > 0 && (
-          <Button p="25px" onClick={handleLoadMore} disabled={isLoading || isFetching}>
-            {isLoading || isFetching ? (
-              <Spinner
-                size='lg'
-                thickness='4px'
-                speed='0.75s'
-                emptyColor='white'
-                color='yellow.500'
-              />
-            ) : (
-              "Load More"
-            )}
-          </Button>
-        )}
-      </Box>
+    <Box mt="12">
+      {filteredStarships.length === 0 ? (
+        <Box mt="20" color="white">Nothing Starships !</Box>
+      ) : (
+
+        <Flex gap='20' justifyContent='center' flexWrap="wrap" mb="6" mt="5">
+          {isSuccess && filteredStarships.map((starship, index) => (
+            <StarshipCard starship={starship} key={index} />
+          ))}
+        </Flex>
+
+      )}
+      {filteredStarships.length > 0 && (
+        <Button _hover={{
+          backgroundColor: "whiteAlpha.300"
+        }} backgroundColor="whiteAlpha.200" color="whiteAlpha.800" p="25px" onClick={handleLoadMore} disabled={isLoading || isFetching}>
+          {isLoading || isFetching ? (
+            <Spinner
+              size='lg'
+              thickness='4px'
+              speed='0.75s'
+              emptyColor='white'
+              color='yellow.500'
+            />
+          ) : (
+            "Load More"
+          )}
+        </Button>
+      )}
+    </Box>
   )
 }
 
