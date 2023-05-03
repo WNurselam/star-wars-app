@@ -72,7 +72,7 @@ const Favorites = () => {
                                         </Center>
                                     </Card>
                                 </Box>)
-                        }) : <Text color="whiteAlpha.800" mt="10">You haven't added any movies to your favorites yet !</Text>
+                        }) : <Text color="whiteAlpha.800" mt="10">You haven't added any movies to your starships yet !</Text>
                     }</Flex>
             </Box>
         </>
