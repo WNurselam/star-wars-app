@@ -13,6 +13,7 @@ const StarshipDetails =({ starship }) =>{
   
   export async function getServerSideProps(context) {
     const { name } = context.query
+    //console.log(context);
   
     const res = await axios.get(`https://swapi.dev/api/starships/?search=${name}`)
     const starship = res.data.results[0]

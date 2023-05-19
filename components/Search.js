@@ -4,16 +4,19 @@ import { useStarshipsContext } from '@/context/StarshipsContext';
 import { motion } from "framer-motion";
 
 
+
+
 const Search = () => {
-    const { setStarships,setPage, searchQuery, setSearchQuery } = useStarshipsContext()
+    const { setStarships, setPage, searchQuery, setSearchQuery } = useStarshipsContext()
 
     //console.log(searchQuery);
     const handleChange = (e) => {
         const value = e.target.value;
-        setSearchQuery(value); 
+        setSearchQuery(value);
         setPage(1)
-        setStarships([]) 
+        setStarships([])
     }
+
 
     return (
         <Flex justifyContent="center" >
@@ -21,7 +24,7 @@ const Search = () => {
                 <InputGroup as={motion.div} whileHover={{ scale: 1.2 }}
                     transition='0.5s linear' >
                     <InputLeftElement pointerEvents="all">
-                        <Search2Icon color="whiteAlpha.800"/>
+                        <Search2Icon color="whiteAlpha.800" />
                     </InputLeftElement >
                     <Input
                         placeholder='Search Name / Model '

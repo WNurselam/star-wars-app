@@ -16,6 +16,8 @@ Starships application using star wars api and view information about the starshi
 
 ✔️ Users can go back to home page from detail page
 
+✔️ Load more starships with a load more button
+
 ## Technologies
 
 - Next.js 

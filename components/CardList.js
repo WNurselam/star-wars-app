@@ -4,9 +4,11 @@ import { useStarshipsContext } from '@/context/StarshipsContext';
 import StarshipCard from './StarshipCard';
 
 
+
 const CardList = () => {
   
 const { starships,setShowCount, setPage, isLoading, searchQuery, isSuccess, isFetching } = useStarshipsContext();
+
 
   const handleLoadMore = () => {
     setShowCount((count) => count + 10);
@@ -34,7 +36,6 @@ const { starships,setShowCount, setPage, isLoading, searchQuery, isSuccess, isFe
   }
   //console.log(filteredStarships);
   return (
-
     <Box mt="12">
       {filteredStarships.length === 0 ? (
         <Box mt="20" color="white">Nothing Starships !</Box>
@@ -50,7 +51,7 @@ const { starships,setShowCount, setPage, isLoading, searchQuery, isSuccess, isFe
       {filteredStarships.length > 0 && (
         <Button _hover={{
           backgroundColor: "whiteAlpha.300"
-        }} backgroundColor="whiteAlpha.200" color="whiteAlpha.800" p="25px" onClick={handleLoadMore} disabled={isLoading || isFetching}>
+        }} backgroundColor="whiteAlpha.200" color="whiteAlpha.800" p="25px" onClick={handleLoadMore} isDisabled={isLoading || isFetching || filteredStarships.length === 36}  >
           {isLoading || isFetching ? (
             <Spinner
               size='lg'
