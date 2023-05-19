@@ -14,11 +14,23 @@ const StarshipDetail = ({ starship }) => {
   const image = images.find((image) => image.name === starship.name);
   //console.log(starship);
 
-  const { data: films} = useQuery('films', async () => {
+  const { data: films, isLoading} = useQuery('films', async () => {
     const filmsData = await Promise.all(starship.films.map(url => axios.get(url)));
     return filmsData.map(res => res.data)
   })
-
+   
+  if (isLoading) {
+    return (
+      <Flex justifyContent="center" alignItems="center" m="10" >
+        <Spinner size="lg"
+          thickness='4px'
+          speed='0.50s'
+          emptyColor='white'
+          color='yellow.500' />
+        <Box p="3" color="whiteAlpha.300" textTransform="uppercase" >Starships is loading...</Box>
+      </Flex>
+    );
+  }
   //console.log(films);
   const bg = "linear-gradient(127.09deg, rgba(6, 11, 40, 0.94) 19.41%, rgba(10, 14, 35, 0.49) 76.65%)"
 
@@ -96,7 +108,7 @@ const StarshipDetail = ({ starship }) => {
                   {films && films.length > 0 ? films.map((film, index) => (
                     <React.Fragment key={film.episode_id}>
                       <Text as="span" color="whiteAlpha.800" >{film.title}</Text>
-                      {index !== films.length - 1 && <Text as="span"> , </Text>}
+                      {index !== films.length - 1 && <Text as="span" color="whiteAlpha.800"> , </Text>}
                     </React.Fragment>
                   )) : <Text>Nothing Films</Text>}
                 </>
