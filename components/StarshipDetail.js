@@ -110,5 +110,3 @@ const StarshipDetail = ({ starship }) => {
 }
 
 export default StarshipDetail
-
-
